@@ -6,15 +6,20 @@ import EmployeeModal from './Employee.Modal';
 type Props = {
     list: IEmployee[];
     onDeleteClickHnd: (data: IEmployee) => void;
+    oneEdit:(data: IEmployee) => void;
 };
 
 const EmployeeList = (props: Props) => {
-    const { list, onDeleteClickHnd } = props;
+    const { list, onDeleteClickHnd, oneEdit } = props;
     const [showModal, setShowModal] = useState(false);
+    const [dataToShow, setDataToShow] = useState<IEmployee | null>(null);
 
-    const viewEmployee = () => {
+    const viewEmployee = (data: IEmployee) => {
+        setDataToShow(data);
         setShowModal(true);
     };
+
+    const onCloseModal = () => setShowModal(false);
 
     return (
         <div>
@@ -43,10 +48,9 @@ const EmployeeList = (props: Props) => {
                                 <td>{employee.relatives}</td>
                                 <td>
                                     <div>
-                                        <input type="button" value="Visualizar" onClick={viewEmployee}/>
-                                        <input type="button" value="Editar"/>
-                                        <input type="button" value="Excluir"
-                                            onClick={() => onDeleteClickHnd(employee)} />
+                                        <input type="button" value="Visualizar" onClick={() => viewEmployee(employee)}/>
+                                        <input type="button" value="Editar" onClick={() => oneEdit(employee) }/>
+                                        <input type="button" value="Excluir" onClick={() => onDeleteClickHnd(employee)} />
                                     </div>
                                 </td> 
                             </tr>
@@ -54,7 +58,7 @@ const EmployeeList = (props: Props) => {
                     })}
                 </tbody>
             </table>
-            {showModal && <EmployeeModal />}
+            {showModal && dataToShow !== null && <EmployeeModal onClose={onCloseModal} data={dataToShow} />}
         </div>
     );
 };
