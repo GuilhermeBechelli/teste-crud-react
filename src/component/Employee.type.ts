@@ -9,10 +9,10 @@ export interface IEmployee {
 export const dummyEmployeeList: IEmployee[] = [
     {
         id: new Date().toJSON().toString(), 
-        name: 'Guilherme Bechelli', 
+        name: 'Guilherme Bechelli Silva', 
         telephone: "34812880",
         email: 'guilherme.dev@gmail.com',
-        relatives: 'Gustavo Valverde',
+        relatives: 'Gustavo Silva',
     },
 
 

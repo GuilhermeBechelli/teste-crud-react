@@ -12,6 +12,7 @@ const Home = () => {
     const [dataToEdit, setDataToEdit] = useState({} as IEmployee);
 
     const onAddEmployeeClickHnd = () => {
+   
         setShownpage(PageEnum.add);
     };
 
@@ -43,7 +44,7 @@ const Home = () => {
             const indexOfRecord = tempData.indexOf(filteredData);
             tempData[indexOfRecord] = data;
             setEmployeeList(tempData);
-            showListPage(); // Added to go back to the list after updating
+            showListPage();
         }
     };
 
